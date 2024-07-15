@@ -1,7 +1,7 @@
 const fs = require("fs");
 
 const text = async () => {
-  const flagOptions = ["c", "l", "w", "m"];
+  const flagOptions = ["-c", "-l", "-w", "-m"];
 
   const flag = process.argv[2];
   const filePath = process.argv[3];
@@ -11,8 +11,8 @@ const text = async () => {
     return;
   }
 
-  if (flag && !flagOptions.includes(flag.slice(1))) {
-    console.log("Flag value is incorrect");
+  if (flag && !flagOptions.includes(flag)) {
+    console.log("Flag is not recognized");
     return;
   }
 
@@ -21,35 +21,34 @@ const text = async () => {
     return;
   }
 
-  const dirent = new fs.Dirent();
+  try {
+    const isFile = fs.statSync(filePath).isFile();
 
-  console.log(
-    dirent.isFile(
-      "./text.txt"
-    )
-  );
-  if (!dirent.isFile(__dirname + "/" + filePath)) {
-    console.log("File path not valid");
+    console.log("isFile", isFile);
+  } catch (error: any) {
+    console.log(error.message);
     return;
   }
 
-  switch ("value") {
-    case "value":
+  switch (flag) {
+    case "-c":
+      try {
+        const res = await fs.readFileSync("./text.txt", "utf-8");
+
+        const words = res.split(/\s+/).filter((word: string) => word.length);
+
+        console.log(words.length);
+      } catch (error: any) {
+        console.log(error.message);
+      }
+      break;
+    case "-l":
       break;
 
     default:
       break;
   }
-
-  try {
-    const res = await fs.readFile("./text.txt", "utf-8");
-
-    const words = res.split(/\s+/).filter((word: string) => word.length);
-
-    console.log(words.length);
-    return res;
-  } catch (error) {}
 };
 
-// console.log(text());
+
 text();
