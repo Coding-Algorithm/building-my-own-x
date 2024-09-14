@@ -1,0 +1,17 @@
+{
+  "name": "wc",
+  "version": "1.0.0",
+  "description": "Practicing coding challenge",
+  "main": "index.ts",
+  "bin": "./bin/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "wc",
+    "word",
+    "count"
+  ],
+  "author": "codingAlgorithm",
+  "license": "ISC"
+}

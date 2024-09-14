@@ -1,3 +1,6 @@
+#!/usr/bin/env node
+
+
 const fs = require("fs");
 const readLine = require("node:readline");
 
@@ -13,11 +16,6 @@ const text = async () => {
     console.log("Flag is not recognized");
     return;
   }
-
-  // if (!filePath) {
-  //   console.log("File path was not provided");
-  //   return;
-  // }
 
   let fileString: string = "";
   const isFile = fs.statSync(filePath ?? "").isFile();
@@ -80,8 +78,6 @@ const text = async () => {
   const getCharacters = (fileString: string) => {
     return fileString.length;
   };
-
-  return;
 
   switch (flag) {
     case "-c":
